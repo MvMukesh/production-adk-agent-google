@@ -1,0 +1,30 @@
+FROM python:3.12-slim
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl nodejs npm \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY config/ config/
+COPY agents/ agents/
+COPY common/ common/
+
+RUN mkdir -p data
+
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+ENV ADK_AGENTS_DIR=agents
+ENV ADK_API_HOST=0.0.0.0
+ENV ADK_API_PORT=8000
+ENV ADK_DB_URL=sqlite:///./data/sessions.db
+
+EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+  CMD curl -sf http://localhost:8000/list-apps || exit 1
+
+CMD ["sh", "-c", "adk api_server -v ${ADK_AGENTS_DIR} --host ${ADK_API_HOST} --port ${ADK_API_PORT} --session_service_uri ${ADK_DB_URL}"]

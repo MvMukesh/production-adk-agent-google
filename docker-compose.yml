@@ -1,0 +1,20 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "${ADK_API_PORT:-8000}:8000"
+    env_file:
+      - .env
+    environment:
+      ADK_API_HOST: 0.0.0.0
+      ADK_API_PORT: 8000
+      ADK_AGENTS_DIR: agents
+      ADK_DB_URL: sqlite:///./data/sessions.db
+    volumes:
+      - adk-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  adk-data:
