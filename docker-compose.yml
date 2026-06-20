@@ -16,5 +16,20 @@ services:
       - adk-data:/app/data
     restart: unless-stopped
 
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.ui
+    ports:
+      - "${NEXT_PORT:-3000}:3000"
+    env_file:
+      - .env
+    environment:
+      ADK_API_BASE: http://api:8000
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
 volumes:
   adk-data:
