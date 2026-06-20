@@ -1,4 +1,4 @@
-.PHONY: help install install-dev run-api run-cli test docker-up docker-down deploy enable-gcp clean
+.PHONY: help install install-dev install-frontend run-api run-ui run-cli test docker-up docker-down deploy enable-gcp clean
 
 ROOT := $(shell pwd)
 export PYTHONPATH := $(ROOT)$(if $(PYTHONPATH),:$(PYTHONPATH),)
@@ -8,6 +8,8 @@ help:
 	@echo "  make install       Install production dependencies"
 	@echo "  make install-dev   Install dev dependencies"
 	@echo "  make run-api       Start ADK API server (all agents)"
+	@echo "  make run-ui        Start Next.js frontend"
+	@echo "  make install-frontend  Install frontend npm dependencies"
 	@echo "  make run-cli       Start reading-list CLI (persistent SQLite)"
 	@echo "  make test          Run unit tests"
 	@echo "  make docker-up     Start Docker Compose stack"
@@ -24,6 +26,12 @@ install-dev:
 
 run-api:
 	bash scripts/run_api_server.sh
+
+install-frontend:
+	cd frontend && npm install
+
+run-ui:
+	bash scripts/run_frontend.sh
 
 run-cli:
 	bash scripts/run_reading_list_cli.sh
