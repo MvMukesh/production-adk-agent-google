@@ -20,3 +20,13 @@ Exposed via FastAPI, adjuster UI, deployed on Google Cloud Run (human-in-the-loo
 - **Google Cloud Run** — serverless production deployment
 - **GCP IAM** — service accounts, roles, and API access configuration
 
+
+# Problem
+Insurance Claims Agent (Google ADK)
+
+`Motivated by real insurtech workflow gaps`: after automating document/KYC extraction, claims adjusters still manually triaged FNOL cases, searched policy SOPs, and drafted coverage notes.
+
+# Solution 
+Built a production-pattern agent with Google ADK — custom tools, persistent memory across sessions,FastAPI REST layer, dashboard for licensed adjusters, and Cloud Run deployment on GCP.
+
+Designed for human-in-the-loop safety: AI recommends; adjuster approves. Includes audit context (memory + KB + tool traces) for operational transparency.
