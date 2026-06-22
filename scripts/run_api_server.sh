@@ -44,7 +44,7 @@ if is_port_in_use "${PORT}"; then
     exit 1
   fi
   echo "         Using port ${FOUND} instead."
-  echo "         Update ADK_API_BASE=http://localhost:${FOUND} in .env or Streamlit sidebar."
+  echo "         Update ADK_API_BASE=http://localhost:${FOUND} in .env."
   PORT="${FOUND}"
 fi
 
@@ -59,7 +59,7 @@ echo
 echo "Endpoints (API has no home page at /):"
 echo "  Swagger UI:  http://localhost:${PORT}/docs"
 echo "  List agents: http://localhost:${PORT}/list-apps"
-echo "  Streamlit:   run 'make run-ui' → http://localhost:8501"
+echo "  Next.js UI:  run 'make run-ui' → http://localhost:3000"
 echo
 
 LOG_LEVEL="${ADK_LOG_LEVEL:-info}"

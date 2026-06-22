@@ -39,9 +39,9 @@ class Settings:
     tavily_mcp_command: str = "npx"
     tavily_mcp_args: tuple[str, ...] = ("-y", "tavily-mcp")
 
-    # Streamlit
-    streamlit_port: int = 8501
-    streamlit_host: str = "0.0.0.0"
+    # Next.js frontend
+    next_port: int = 3000
+    next_host: str = "0.0.0.0"
 
     # HTTP client
     http_timeout_seconds: int = 60
@@ -89,8 +89,8 @@ class Settings:
             agent_model=os.getenv("AGENT_MODEL", "gemini-2.0-flash"),
             tavily_mcp_command=os.getenv("TAVILY_MCP_COMMAND", "npx"),
             tavily_mcp_args=args_tuple or ("-y", "tavily-mcp"),
-            streamlit_port=_int("STREAMLIT_PORT", 8501),
-            streamlit_host=os.getenv("STREAMLIT_HOST", "0.0.0.0"),
+            next_port=_int("NEXT_PORT", 3000),
+            next_host=os.getenv("NEXT_HOST", "0.0.0.0"),
             http_timeout_seconds=_int("HTTP_TIMEOUT_SECONDS", 60),
             http_run_timeout_seconds=_int("HTTP_RUN_TIMEOUT_SECONDS", 120),
             google_cloud_project=os.getenv("GOOGLE_CLOUD_PROJECT", ""),

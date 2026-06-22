@@ -17,6 +17,7 @@ def test_settings_defaults():
         s = Settings.from_env()
     assert s.adk_api_port == 8000
     assert s.adk_db_url.startswith("sqlite:")
+    assert s.next_port == 3000
 
 
 def test_validate_google_key():
