@@ -1,11 +1,8 @@
 # production-adk-agent-google
-Production-ready AI agent built with Google ADK — custom tools, persistent session state, FastAPI REST API, Streamlit UI, and deployment to Google Cloud Run on GCP.
-
----
 
 Identified post-KYC workflow bottleneck in claims FNOL intake
 - Designed and built an internal AI copilot using:
-  - Google ADK with custom tools
+  - `Google ADK` with custom tools
   - Persistent session memory and
   - RAG-grounded recommendations
     
